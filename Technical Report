@@ -1,0 +1,35 @@
+## Technical report on a Product Dataset
+Feb 6, 2025
+—
+Introduction
+This report outlines the data cleaning and preparation steps performed on a dataset containing product information. The objectives of this process were:
+Create a concise product title.
+Format column names.
+Handle missing values.
+The Steps included in data exploration and cleaning include
+Data Loading and Initial Inspection
+The dataset was loaded from an Excel file using pd.read_excel() after importing panda on Python.
+An initial inspection of the data was conducted to understand the data structure, identify potential issues, and plan the cleaning steps.
+This can be seen in the picture below
+
+Data Cleaning and Transformation:
+Short Title Creation:
+A custom function (create_short_title) was defined to generate concise product titles.
+The function extracts the first two, middle and last two words from the original title depending on the number of words.
+For titles with fewer words, it extracts a shorter combination or the entire title.
+Column Name Formatting:
+Column names were converted to sentence case using df.columns.str.title().
+Underscores were inserted between consecutive uppercase letters in the column names using
+if ‘Producttypeid’ in df.columns:
+df.rename(columns={‘Producttypeid’: ‘Product_Type_ID’}, inplace=True), for 3 columns.
+Missing Value Handling:
+The presence of the ‘Productlength’ column was checked.
+If the column existed, missing values in ‘Productlength’ were filled with 0 using df['Productlength'].fillna(0). This approach was chosen for simplicity in this example. This was done for Producttypeid also, while bullet_point column was replaced with none using df[‘Bullet_Points’].fillna(‘None’).
+Duplicates were also removed using df = df.drop_duplicates().
+
+4. Results
+The cleaned and transformed dataset was stored in the DataFrame df.
+The df.head() method was used to display the first few rows of the DataFrame, showcasing the changes made to the data. These can be seen in the below
+5. Conclusion
+This report documents the data cleaning and preparation steps performed on the given dataset. The key transformations included creating a new ‘short_title’ column, formatting column names, and handling missing values in different columns.
+
